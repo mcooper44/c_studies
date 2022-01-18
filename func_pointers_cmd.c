@@ -1,5 +1,17 @@
 #include <stdio.h>
 
+void CmdVersion(void) {
+	printf("Firmware Version 1.0\n");
+}
+
+void CmdFlashTest(void) {
+	printf("Flashing\n");
+}
+
+void CmdBlinkLED(void) {
+	printf("Blinking at 20 hertz\n");
+}
+
 typedef void(*functionPointerType)(void);
 
 struct commandStruct {
@@ -18,18 +30,15 @@ const struct commandStruct commands[] = {
 	{"",0,""} // End of table indicator, MUST BE LAST
 };
 
-void CmdVersion(void) {
-	printf("Firmware Version 1.0");
-}
-
-void CmdFlashTest(void) {
-	printf("Flashing");
-}
-
-int CmdBlinkLED(int hertz) {
-	printf("Blinking at %d hertz", hertz);
-}
+enum CmdList { ver = 0, flashTest, blinkLED };
 
 void main(void) {
-
+	for(int i=ver; i<=blinkLED; i++) {
+		char const * _name = commands[i].name;
+		char const * _help = commands[i].help;
+		
+		printf("%s \n", _name);
+		printf("%s \n", _help);
+		(*commands[i].execute)();
+	}
 }
