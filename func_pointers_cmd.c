@@ -32,13 +32,12 @@ const struct commandStruct commands[] = {
 
 enum CmdList { ver = 0, flashTest, blinkLED };
 
-void main(void) {
+int main(void) {
 	for(int i=ver; i<=blinkLED; i++) {
-		char const * _name = commands[i].name;
-		char const * _help = commands[i].help;
 		
-		printf("%s \n", _name);
-		printf("%s \n", _help);
+		printf("%s \n", commands[i].name);
+		printf("%s \n", commands[i].help);
 		(*commands[i].execute)();
 	}
+	return 0;
 }
