@@ -1,2 +1,3 @@
 # c_studies
 A place to keep notes as I work my way through learning C
+This is some real basic stuff...
